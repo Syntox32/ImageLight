@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Image Viwer</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">-->
+    <style media="screen">
+
+* {
+  margin: 0;
+  padding: 0;
+
+	font-family: "Helvetica";
+  /*background-color: #FFFDFD;*/
+}
+
+/* medium screens */
+@media all and (min-width: 600px) {
+
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: center;
+}
+
+.image {
+  flex-basis: auto;
+  max-width: 400px;
+  /*background-color: blue;*/
+  vertical-align: middle;
+  height: 100%;
+  align-self: center;
+  margin: 3px;
+  }
+
+  .image img {
+    max-width: 400px;
+    border: 2px solid #E7E5E5;
+    margin: 0 auto;
+  }
+
+  .image .link a {
+    color: #b3b3b3;
+    text-align: center;
+  }
+
+	.dirs, #show, #hide:target {
+		display: none;
+	}
+
+	#hide:target + #show, #hide:target ~ .dirs {
+		display: inline;
+	}
+
+    </style>
+		<!--<link rel="stylesheet" href="/static/main.css">-->
+	</head>
+	<body>
+		<a href="#hide" id="hide">Expand directory list &gt;</a>
+		<a href="#show" id="show">Hide directory list &lt;</a>
+		<div class="dirs">
+			<p>Directories</p>
+	    {{ range .Dirs }}
+				<a href="{{.}}">{{.}}</a><br>
+	    {{ end }}
+		</div>
+
+    <div class="container">
+      {{ range .Files }}
+        <div class="image">
+          <a href="/image/{{.}}"><img src="/image/{{.}}" alt=""></a>
+          <p class="link"><a href="/image/{{.}}">{{.}}</a></p>
+        </div>
+      {{ end }}
+    </div>
+
+		<script src="/static/main.js"></script>
+	</body>
+</html>
